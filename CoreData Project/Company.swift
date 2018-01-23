@@ -8,7 +8,8 @@
 
 import UIKit
 
-struct Company {
-    var name: String
-    var founded: Date
-}
+//struct Company {
+//    var name: String
+//    var founded: Date
+//}
+

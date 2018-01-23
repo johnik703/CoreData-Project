@@ -15,6 +15,7 @@
 		1F98F06C2014F7BA00E5B032 /* UIColor+theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F98F06B2014F7BA00E5B032 /* UIColor+theme.swift */; };
 		1F98F06E2015684D00E5B032 /* Company.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F98F06D2015684D00E5B032 /* Company.swift */; };
 		1F98F07020156B2C00E5B032 /* CreateCompanyController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F98F06F20156B2C00E5B032 /* CreateCompanyController.swift */; };
+		1F98F0732016B37D00E5B032 /* CoreDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1F98F0712016B37D00E5B032 /* CoreDataModel.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		1F98F06B2014F7BA00E5B032 /* UIColor+theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+theme.swift"; sourceTree = "<group>"; };
 		1F98F06D2015684D00E5B032 /* Company.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Company.swift; sourceTree = "<group>"; };
 		1F98F06F20156B2C00E5B032 /* CreateCompanyController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateCompanyController.swift; sourceTree = "<group>"; };
+		1F98F0722016B37D00E5B032 /* CoreDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreDataModel.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +71,7 @@
 				1F98F06B2014F7BA00E5B032 /* UIColor+theme.swift */,
 				1F98F06D2015684D00E5B032 /* Company.swift */,
 				1F98F06F20156B2C00E5B032 /* CreateCompanyController.swift */,
+				1F98F0712016B37D00E5B032 /* CoreDataModel.xcdatamodeld */,
 			);
 			path = "CoreData Project";
 			sourceTree = "<group>";
@@ -147,6 +150,7 @@
 			files = (
 				1F98F06C2014F7BA00E5B032 /* UIColor+theme.swift in Sources */,
 				1F98F05C2014ECE600E5B032 /* CompaniesController.swift in Sources */,
+				1F98F0732016B37D00E5B032 /* CoreDataModel.xcdatamodeld in Sources */,
 				1F98F07020156B2C00E5B032 /* CreateCompanyController.swift in Sources */,
 				1F98F05A2014ECE600E5B032 /* AppDelegate.swift in Sources */,
 				1F98F06E2015684D00E5B032 /* Company.swift in Sources */,
@@ -336,6 +340,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		1F98F0712016B37D00E5B032 /* CoreDataModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				1F98F0722016B37D00E5B032 /* CoreDataModel.xcdatamodel */,
+			);
+			currentVersion = 1F98F0722016B37D00E5B032 /* CoreDataModel.xcdatamodel */;
+			path = CoreDataModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 1F98F04E2014ECE600E5B032 /* Project object */;
 }
