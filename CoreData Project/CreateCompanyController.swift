@@ -12,6 +12,7 @@ import CoreData
 protocol CreateCompanyControllerDelegate {
     func didAddCompany(company: Company)
 }
+
 class CreateCompanyController: UIViewController {
     
     let nameLabel: UILabel = {
@@ -73,25 +74,20 @@ class CreateCompanyController: UIViewController {
     }
     
     @objc func handleSave() {
-//        dismiss(animated: true) {
-//            guard let name = self.nameTextField.text else {return}
-//
-//            let company = Company(name: name, founded: Date())
-//
-//            self.delegate?.didAddCompany(company: company)
-//        }
         
         //Initialization of CoreData Stack
         //o nome do container tem que ser igual ao nome do ficheiro do modelo criado
-        let persistentContainter = NSPersistentContainer(name: "CoreDataModel")
+//        let persistentContainter = NSPersistentContainer(name: "CoreDataModel")
+//
+//        persistentContainter.loadPersistentStores { (storeDescription, err) in
+//            if let err = err {
+//                fatalError("Loading of store failed: \(err)")
+//            }
+//        }
+//
+//        let context = persistentContainter.viewContext
         
-        persistentContainter.loadPersistentStores { (storeDescription, err) in
-            if let err = err {
-                fatalError("Loading of store failed: \(err)")
-            }
-        }
-        
-        let context = persistentContainter.viewContext
+        let context = CoreDataManager.shared.persistentContainer.viewContext
         
         let company = NSEntityDescription.insertNewObject(forEntityName: "Company", into: context)
         
@@ -100,6 +96,11 @@ class CreateCompanyController: UIViewController {
         //perform the save
         do {
             try context.save()
+            
+            //Success on saving data on CoreData
+            dismiss(animated: true, completion: {
+                self.delegate?.didAddCompany(company: company as! Company)
+            })
         }
         catch let saveErr {
             print("Error to save company: ", saveErr)

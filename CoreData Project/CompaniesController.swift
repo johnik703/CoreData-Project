@@ -50,33 +50,20 @@ class CompaniesController: UITableViewController, CreateCompanyControllerDelegat
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellId)
         
     }
-
-//    func addCompany(company: Company) {
-//        companies.append(company)
-//        
-//        let indexPath = IndexPath(row: companies.count - 1, section: 0)
-//        tableView.insertRows(at: [indexPath], with: .automatic)
-//    }
     
     fileprivate func fetchCompanies() {
         //attempt core data fetch
         
-        let persistentContainter = NSPersistentContainer(name: "CoreDataModel")
-        
-        persistentContainter.loadPersistentStores { (storeDescription, err) in
-            if let err = err {
-                fatalError("Loading of store failed: \(err)")
-            }
-            
-        }
-        
-        let context = persistentContainter.viewContext
+        let context = CoreDataManager.shared.persistentContainer.viewContext
         
         let fetchRequest = NSFetchRequest<Company>(entityName: "Company")
         
         do {
             let companies = try context.fetch(fetchRequest)
             companies.forEach({print($0.name ?? "")})
+            
+            self.companies = companies
+            self.tableView.reloadData()
         }
         catch let fetchErr {
             print("Failed to fetch companies: ", fetchErr)
@@ -118,6 +105,36 @@ class CompaniesController: UITableViewController, CreateCompanyControllerDelegat
     
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 50
+    }
+    
+    override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let deleteAction = UITableViewRowAction(style: .destructive, title: "Delete") { (action, indexPath) in
+            let company = self.companies[indexPath.row]
+            print("Attempting to remove company ", company.name ?? "")
+            
+            //delete from table
+            self.companies.remove(at: indexPath.row)
+            self.tableView.deleteRows(at: [indexPath], with: .automatic)
+            
+            //delete from core data
+            let context = CoreDataManager.shared.persistentContainer.viewContext
+            
+            context.delete(company)
+            
+            do {
+                try context.save()
+            }
+            catch let saveErr {
+                print("Failed to delete company: ", saveErr)
+            }
+        }
+        
+        let editAction = UITableViewRowAction(style: .normal, title: "Edit") { (action, indexPath) in
+            let company = self.companies[indexPath.row]
+            print("Attempting to edit company ", company.name ?? "")
+        }
+        
+        return [deleteAction, editAction]
     }
 }
 
