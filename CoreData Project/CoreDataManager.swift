@@ -42,13 +42,14 @@ struct CoreDataManager {
         }
     }
     
-    func createEmployee(employeeName: String, company: Company) -> (Employee?, Error?) {
+    func createEmployee(employeeName: String, employeeType: String, birthday: Date, company: Company) -> (Employee?, Error?) {
         let context = persistentContainer.viewContext
         
         let employee = NSEntityDescription.insertNewObject(forEntityName: "Employee", into: context) as! Employee
         employee.setValue(employeeName, forKey: "name")
         
         employee.company = company
+        employee.type = employeeType
         
         let employeeInformation = NSEntityDescription.insertNewObject(forEntityName: "EmployeeInformation", into: context) as! EmployeeInformation
         //Maneira correcta de fazer mas se algum dia se mudar o atributo na BD a app vai crashar sem erro de compilacao porque a key mudou
@@ -56,6 +57,7 @@ struct CoreDataManager {
         
         //E mais seguro fazer desta maneira pois como se ja se fez o cast para EmployeeInformation, se algum dia se mudar o atributo na BD da erro de compilacao e e mais facil perceber
         employeeInformation.taxId = "456"
+        employeeInformation.birthday = birthday
         
         employee.employeeInformation = employeeInformation
         

@@ -11,9 +11,33 @@ import CoreData
 
 protocol CreateCompanyControllerDelegate {
     func didAddCompany(company: Company)
+    func didEditCompany(company: Company)
 }
 
-class CreateCompanyController: UIViewController {
+class CreateCompanyController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
+    var company: Company? {
+        didSet {
+            nameTextField.text = company?.name
+            
+            guard let founded = company?.founded else {return}
+            datePicker.date = founded
+            
+            if let imageData = company?.imageData {
+                companyImageView.image = UIImage(data: imageData)
+                setupImageCircularStyle()
+            }
+        }
+    }
+    
+    lazy var companyImageView: UIImageView = {
+        let iv = UIImageView(image: #imageLiteral(resourceName: "select_photo_empty"))
+        iv.translatesAutoresizingMaskIntoConstraints = false
+        iv.isUserInteractionEnabled = true
+        iv.contentMode = .scaleAspectFill
+        iv.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleSelectPhoto)))
+        return iv
+    }()
     
     let nameLabel: UILabel = {
         let label = UILabel()
@@ -29,17 +53,40 @@ class CreateCompanyController: UIViewController {
         return textField
     }()
     
-//    var companiesController: CompaniesController?
+    var datePicker: UIDatePicker = {
+        let picker = UIDatePicker()
+        picker.datePickerMode = .date
+        picker.translatesAutoresizingMaskIntoConstraints = false
+        return picker
+    }()
+    
     var delegate: CreateCompanyControllerDelegate?
     
+    func setupImageCircularStyle(){
+        companyImageView.layer.cornerRadius = companyImageView.frame.width / 2
+        companyImageView.clipsToBounds = true
+        companyImageView.layer.borderColor = UIColor.darkBlue.cgColor
+        companyImageView.layer.borderWidth = 2
+    }
+    
+    @objc private func handleSelectPhoto() {
+        let imagePickerController = UIImagePickerController()
+        imagePickerController.delegate = self
+        imagePickerController.allowsEditing = true
+        present(imagePickerController, animated: true, completion: nil)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        navigationItem.title = company == nil ? "Create Company" : "Edit Company"
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupUI()
         
-        navigationItem.title = "Create Company"
-        
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Cancel", style: .done, target: self, action: #selector(handleCancel))
+        setupCancelButton()
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Save", style: .done, target: self, action: #selector(handleSave))
         
@@ -48,20 +95,16 @@ class CreateCompanyController: UIViewController {
     
     fileprivate func setupUI() {
         
-        let backgroundView = UIView()
-        backgroundView.backgroundColor = .lightBlue
-        backgroundView.translatesAutoresizingMaskIntoConstraints = false
+        let backgroundView = setupLightBlueBackgroundView(height: 350)
         
-        view.addSubview(backgroundView)
-        
-        backgroundView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-        backgroundView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
-        backgroundView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
-        backgroundView.heightAnchor.constraint(equalToConstant: 50).isActive = true
-        
+        view.addSubview(companyImageView)
+        companyImageView.topAnchor.constraint(equalTo: view.topAnchor, constant: 8).isActive = true
+        companyImageView.heightAnchor.constraint(equalToConstant: 100).isActive = true
+        companyImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        companyImageView.widthAnchor.constraint(equalToConstant: 100).isActive = true
         
         view.addSubview(nameLabel)
-        nameLabel.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        nameLabel.topAnchor.constraint(equalTo: companyImageView.bottomAnchor).isActive = true
         nameLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 16).isActive = true
         nameLabel.heightAnchor.constraint(equalToConstant: 50).isActive = true
         nameLabel.widthAnchor.constraint(equalToConstant: 100).isActive = true
@@ -71,27 +114,58 @@ class CreateCompanyController: UIViewController {
         nameTextField.bottomAnchor.constraint(equalTo: nameLabel.bottomAnchor).isActive = true
         nameTextField.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
         nameTextField.leftAnchor.constraint(equalTo: nameLabel.rightAnchor).isActive = true
+        
+        view.addSubview(datePicker)
+        datePicker.topAnchor.constraint(equalTo: nameTextField.bottomAnchor).isActive = true
+        datePicker.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
+        datePicker.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
+        datePicker.bottomAnchor.constraint(equalTo: backgroundView.bottomAnchor).isActive = true
     }
     
     @objc func handleSave() {
+        if company == nil {
+            createCompany()
+        }
+        else {
+            saveCompanyChanges()
+        }
+    }
+    
+    private func saveCompanyChanges() {
+        let context = CoreDataManager.shared.persistentContainer.viewContext
         
-        //Initialization of CoreData Stack
-        //o nome do container tem que ser igual ao nome do ficheiro do modelo criado
-//        let persistentContainter = NSPersistentContainer(name: "CoreDataModel")
-//
-//        persistentContainter.loadPersistentStores { (storeDescription, err) in
-//            if let err = err {
-//                fatalError("Loading of store failed: \(err)")
-//            }
-//        }
-//
-//        let context = persistentContainter.viewContext
+        company?.name = nameTextField.text
+        company?.founded = datePicker.date
         
+        if let companyImage = companyImageView.image {
+            let imageData = UIImageJPEGRepresentation(companyImage, 0.8)
+            company?.imageData = imageData
+        }
+        
+        do {
+            try context.save()
+            
+            dismiss(animated: true, completion: {
+                self.delegate?.didEditCompany(company: self.company!)
+            })
+        }
+        catch let saveErr {
+            print("Failed to save company changes: ", saveErr)
+        }
+    }
+    
+    private func createCompany() {
         let context = CoreDataManager.shared.persistentContainer.viewContext
         
         let company = NSEntityDescription.insertNewObject(forEntityName: "Company", into: context)
         
         company.setValue(nameTextField.text, forKey: "name")
+        company.setValue(datePicker.date, forKey: "founded")
+        
+        if let companyImage = companyImageView.image {
+            let imageData = UIImageJPEGRepresentation(companyImage, 0.8)
+            company.setValue(imageData, forKey: "imageData")
+        }
         
         //perform the save
         do {
@@ -107,7 +181,21 @@ class CreateCompanyController: UIViewController {
         }
     }
     
-    @objc func handleCancel() {
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        
+        if let editedImage = info[UIImagePickerControllerEditedImage] as? UIImage {
+            companyImageView.image = editedImage
+        }
+        else if let originalImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
+            companyImageView.image = originalImage
+        }
+        
+        setupImageCircularStyle()
+        
         dismiss(animated: true, completion: nil)
     }
 }
