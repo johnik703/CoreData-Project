@@ -24,6 +24,7 @@
 		1F98F081201E534A00E5B032 /* UIViewController+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F98F080201E534A00E5B032 /* UIViewController+Helpers.swift */; };
 		1F98F083201E542B00E5B032 /* CreateEmployeeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F98F082201E542B00E5B032 /* CreateEmployeeController.swift */; };
 		1F98F08620268C8E00E5B032 /* EmployeeType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F98F08520268C8E00E5B032 /* EmployeeType.swift */; };
+		1F98F0882027C44700E5B032 /* CompaniesAutoUpdateController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F98F0872027C44700E5B032 /* CompaniesAutoUpdateController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +47,7 @@
 		1F98F080201E534A00E5B032 /* UIViewController+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Helpers.swift"; sourceTree = "<group>"; };
 		1F98F082201E542B00E5B032 /* CreateEmployeeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateEmployeeController.swift; sourceTree = "<group>"; };
 		1F98F08520268C8E00E5B032 /* EmployeeType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeType.swift; sourceTree = "<group>"; };
+		1F98F0872027C44700E5B032 /* CompaniesAutoUpdateController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompaniesAutoUpdateController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +104,7 @@
 				1F98F076201E3B1700E5B032 /* CompanyCell.swift */,
 				1F98F079201E4C1D00E5B032 /* CompaniesController+CreateCompany.swift */,
 				1F98F07B201E4CDB00E5B032 /* CompaniesController+UITableView.swift */,
+				1F98F0872027C44700E5B032 /* CompaniesAutoUpdateController.swift */,
 			);
 			path = Companies;
 			sourceTree = "<group>";
@@ -207,6 +210,7 @@
 				1F98F083201E542B00E5B032 /* CreateEmployeeController.swift in Sources */,
 				1F98F07E201E51AE00E5B032 /* EmployeesController.swift in Sources */,
 				1F98F07020156B2C00E5B032 /* CreateCompanyController.swift in Sources */,
+				1F98F0882027C44700E5B032 /* CompaniesAutoUpdateController.swift in Sources */,
 				1F98F05A2014ECE600E5B032 /* AppDelegate.swift in Sources */,
 				1F98F0752017D87200E5B032 /* CoreDataManager.swift in Sources */,
 				1F98F06E2015684D00E5B032 /* Company.swift in Sources */,
