@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		1F4D613E202BC5DA0036D01D /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4D613D202BC5DA0036D01D /* Service.swift */; };
+		1F92180A202F701E00E6D3AE /* Model1.1_2.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = 1F921809202F701E00E6D3AE /* Model1.1_2.xcmappingmodel */; };
+		1F92180C202F720700E6D3AE /* CustomMigrationPolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F92180B202F720700E6D3AE /* CustomMigrationPolicy.swift */; };
 		1F98F05A2014ECE600E5B032 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F98F0592014ECE600E5B032 /* AppDelegate.swift */; };
 		1F98F05C2014ECE600E5B032 /* CompaniesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F98F05B2014ECE600E5B032 /* CompaniesController.swift */; };
 		1F98F05F2014ECE600E5B032 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1F98F05D2014ECE600E5B032 /* Main.storyboard */; };
@@ -31,6 +33,8 @@
 /* Begin PBXFileReference section */
 		1F4D613D202BC5DA0036D01D /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 		1F4D613F202D0F6F0036D01D /* CoreDataModel_1.1.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreDataModel_1.1.xcdatamodel; sourceTree = "<group>"; };
+		1F921809202F701E00E6D3AE /* Model1.1_2.xcmappingmodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcmappingmodel; path = Model1.1_2.xcmappingmodel; sourceTree = "<group>"; };
+		1F92180B202F720700E6D3AE /* CustomMigrationPolicy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomMigrationPolicy.swift; sourceTree = "<group>"; };
 		1F98F0562014ECE600E5B032 /* CoreData Project.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "CoreData Project.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1F98F0592014ECE600E5B032 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1F98F05B2014ECE600E5B032 /* CompaniesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompaniesController.swift; sourceTree = "<group>"; };
@@ -51,6 +55,7 @@
 		1F98F082201E542B00E5B032 /* CreateEmployeeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateEmployeeController.swift; sourceTree = "<group>"; };
 		1F98F08520268C8E00E5B032 /* EmployeeType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeType.swift; sourceTree = "<group>"; };
 		1F98F0872027C44700E5B032 /* CompaniesAutoUpdateController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompaniesAutoUpdateController.swift; sourceTree = "<group>"; };
+		1FE4695C202F6E1C00C939AB /* CoreDataModel_1.2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreDataModel_1.2.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +101,8 @@
 				1F98F06F20156B2C00E5B032 /* CreateCompanyController.swift */,
 				1F98F0712016B37D00E5B032 /* CoreDataModel.xcdatamodeld */,
 				1F98F0742017D87200E5B032 /* CoreDataManager.swift */,
+				1F921809202F701E00E6D3AE /* Model1.1_2.xcmappingmodel */,
+				1F92180B202F720700E6D3AE /* CustomMigrationPolicy.swift */,
 			);
 			path = "CoreData Project";
 			sourceTree = "<group>";
@@ -203,6 +210,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1F92180A202F701E00E6D3AE /* Model1.1_2.xcmappingmodel in Sources */,
 				1F98F07A201E4C1D00E5B032 /* CompaniesController+CreateCompany.swift in Sources */,
 				1F98F06C2014F7BA00E5B032 /* UIColor+theme.swift in Sources */,
 				1F98F05C2014ECE600E5B032 /* CompaniesController.swift in Sources */,
@@ -219,6 +227,7 @@
 				1F98F05A2014ECE600E5B032 /* AppDelegate.swift in Sources */,
 				1F98F0752017D87200E5B032 /* CoreDataManager.swift in Sources */,
 				1F98F06E2015684D00E5B032 /* Company.swift in Sources */,
+				1F92180C202F720700E6D3AE /* CustomMigrationPolicy.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -410,10 +419,11 @@
 		1F98F0712016B37D00E5B032 /* CoreDataModel.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				1FE4695C202F6E1C00C939AB /* CoreDataModel_1.2.xcdatamodel */,
 				1F4D613F202D0F6F0036D01D /* CoreDataModel_1.1.xcdatamodel */,
 				1F98F0722016B37D00E5B032 /* CoreDataModel.xcdatamodel */,
 			);
-			currentVersion = 1F4D613F202D0F6F0036D01D /* CoreDataModel_1.1.xcdatamodel */;
+			currentVersion = 1FE4695C202F6E1C00C939AB /* CoreDataModel_1.2.xcdatamodel */;
 			path = CoreDataModel.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
