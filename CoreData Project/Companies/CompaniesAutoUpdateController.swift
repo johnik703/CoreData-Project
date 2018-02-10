@@ -95,7 +95,7 @@ class CompaniesAutoUpdateController: UITableViewController, NSFetchedResultsCont
     @objc func handleDelete() {
         
         let request: NSFetchRequest<Company> = Company.fetchRequest()
-        request.predicate = NSPredicate(format: "name CONTAINS %@", "B")
+//        request.predicate = NSPredicate(format: "name CONTAINS %@", "B")
         
         let context = CoreDataManager.shared.persistentContainer.viewContext
         
@@ -130,6 +130,17 @@ class CompaniesAutoUpdateController: UITableViewController, NSFetchedResultsCont
         navigationItem.title = "Company Auto Updates!"
         
         tableView.register(CompanyCell.self, forCellReuseIdentifier: cellId)
+        
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(handleRefresh), for: .valueChanged)
+        refreshControl.tintColor = .white
+        
+        self.refreshControl = refreshControl
+    }
+    
+    @objc func handleRefresh() {
+       Service.shared.downloadCompaniesFromServer()
+        refreshControl?.endRefreshing()
     }
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -163,5 +174,12 @@ class CompaniesAutoUpdateController: UITableViewController, NSFetchedResultsCont
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 50
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        let employeesListController = EmployeesController()
+        employeesListController.company = fetchedResultsController.object(at: indexPath)
+        navigationController?.pushViewController(employeesListController, animated: true)
     }
 }

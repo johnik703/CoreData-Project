@@ -145,10 +145,10 @@ class EmployeesController: UITableViewController, CreateEmployeeControllerDelega
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "MMM dd yyyy"
             
-            cell.textLabel?.text = "\(employee.name ?? "" )   \(dateFormatter.string(from: birthday))";
+            cell.textLabel?.text = "\(employee.fullName ?? "" )   \(dateFormatter.string(from: birthday))";
         }
         else {
-            cell.textLabel?.text = employee.name
+            cell.textLabel?.text = employee.fullName
         }
         cell.backgroundColor = .tealColor
         cell.textLabel?.font = UIFont.boldSystemFont(ofSize: 14)

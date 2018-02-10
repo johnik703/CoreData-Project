@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1F4D613E202BC5DA0036D01D /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F4D613D202BC5DA0036D01D /* Service.swift */; };
 		1F98F05A2014ECE600E5B032 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F98F0592014ECE600E5B032 /* AppDelegate.swift */; };
 		1F98F05C2014ECE600E5B032 /* CompaniesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F98F05B2014ECE600E5B032 /* CompaniesController.swift */; };
 		1F98F05F2014ECE600E5B032 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1F98F05D2014ECE600E5B032 /* Main.storyboard */; };
@@ -28,6 +29,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1F4D613D202BC5DA0036D01D /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
+		1F4D613F202D0F6F0036D01D /* CoreDataModel_1.1.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreDataModel_1.1.xcdatamodel; sourceTree = "<group>"; };
 		1F98F0562014ECE600E5B032 /* CoreData Project.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "CoreData Project.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1F98F0592014ECE600E5B032 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1F98F05B2014ECE600E5B032 /* CompaniesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompaniesController.swift; sourceTree = "<group>"; };
@@ -105,6 +108,7 @@
 				1F98F079201E4C1D00E5B032 /* CompaniesController+CreateCompany.swift */,
 				1F98F07B201E4CDB00E5B032 /* CompaniesController+UITableView.swift */,
 				1F98F0872027C44700E5B032 /* CompaniesAutoUpdateController.swift */,
+				1F4D613D202BC5DA0036D01D /* Service.swift */,
 			);
 			path = Companies;
 			sourceTree = "<group>";
@@ -208,6 +212,7 @@
 				1F98F07C201E4CDB00E5B032 /* CompaniesController+UITableView.swift in Sources */,
 				1F98F08620268C8E00E5B032 /* EmployeeType.swift in Sources */,
 				1F98F083201E542B00E5B032 /* CreateEmployeeController.swift in Sources */,
+				1F4D613E202BC5DA0036D01D /* Service.swift in Sources */,
 				1F98F07E201E51AE00E5B032 /* EmployeesController.swift in Sources */,
 				1F98F07020156B2C00E5B032 /* CreateCompanyController.swift in Sources */,
 				1F98F0882027C44700E5B032 /* CompaniesAutoUpdateController.swift in Sources */,
@@ -405,9 +410,10 @@
 		1F98F0712016B37D00E5B032 /* CoreDataModel.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				1F4D613F202D0F6F0036D01D /* CoreDataModel_1.1.xcdatamodel */,
 				1F98F0722016B37D00E5B032 /* CoreDataModel.xcdatamodel */,
 			);
-			currentVersion = 1F98F0722016B37D00E5B032 /* CoreDataModel.xcdatamodel */;
+			currentVersion = 1F4D613F202D0F6F0036D01D /* CoreDataModel_1.1.xcdatamodel */;
 			path = CoreDataModel.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
